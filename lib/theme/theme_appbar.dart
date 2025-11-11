@@ -10,7 +10,7 @@ class ThemeAppBar{
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 20,
-      color: ColorApp.textoClaro
+      color: ColorApp.superficie
     ),
   );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../controller/login_controller.dart';
 import '../theme/scheme_colors.dart';
+import '../theme/theme_background.dart';
 
 class LoginView extends StatelessWidget {
   final LoginController controller = LoginController();
@@ -11,89 +12,51 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [ColorApp.primario, ColorApp.secundario],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        // Usa el fondo degradado definido en theme_background.dart
+        decoration: BackGround.degradoPrincipal,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Card(
-              color: Colors.black.withOpacity(0.6),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              elevation: 6,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      'Iniciar Sesión',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    TextField(
-                      controller: controller.usuarioCtrl,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        labelText: 'Usuario',
-                        labelStyle: const TextStyle(color: Colors.white70),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white54),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    TextField(
-                      controller: controller.claveCtrl,
-                      obscureText: true,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        labelText: 'Contraseña',
-                        labelStyle: const TextStyle(color: Colors.white70),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white54),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () => controller.validarLogin(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorApp.acento,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 40,
-                          vertical: 12,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: const Text('Ingresar'),
-                    ),
-                  ],
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Iniciar Sesión',
+                  style: TextStyle(
+                    color: ColorApp.textoClaro,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 30),
+
+                // Campo de Usuario (usa ThemeForm automaticamente)
+                TextField(
+                  controller: controller.usuarioCtrl,
+                  decoration: const InputDecoration(
+                    labelText: 'Usuario',
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                // Campo de Contraseña
+                TextField(
+                  controller: controller.claveCtrl,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Contraseña',
+                  ),
+                ),
+
+                const SizedBox(height: 25),
+
+                // Botón principal (usa el tema de ThemeButtom)
+                ElevatedButton(
+                  onPressed: () => controller.validarLogin(context),
+                  child: const Text('Ingresar'),
+                ),
+              ],
             ),
           ),
         ),
